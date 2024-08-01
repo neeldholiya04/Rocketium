@@ -75,7 +75,7 @@ npm app.js
 The server will start at the point you defined in `.env` file. Here it will start at `PORT=3000`
 
 ## API Endpoints
-### Get Data
+### Get All Data
 ```url
 GET http://localhost:3000/api/data
 ```
@@ -85,6 +85,102 @@ Query Parameters:
 * `filters`: JSON array of filter criteria.
 * `sortBy`: Field to sort by.
 * `sortOrder`: Sort order (asc or desc)
+
+### Get the Data in a Sorted way
+```url
+GET http://localhost:8080/api/data?sortBy=id&sortOrder=asc
+```
+**Parameters**
+* sortBy
+* sortOrder
+
+**Parameter Value**
+* sortBy:
+    * name(string)
+    * language(string)
+    * id(string)
+    * version(double)
+    * bio(string)
+* sortOrder:
+    * asc (for dorting in ascending order)
+    * desc (for sorting in descending order)
+
+### Filtering the Data
+```url
+GET http://localhost:8080/api/data?filters=[{"filterBy":"version","operator":"gte","filterValue":2.5}]
+```
+**Parameters**
+* filterBy
+* filterValue
+* operator
+
+**Parameter Value**
+* filterBy:
+    * name(string)
+    * language(string)
+    * id(string)
+    * version(double)
+    * bio(string)
+* filterBy:
+    * the value by which we want to filter (e.g., if we want to filter for the version greater than or equal to 2.5, filterValue=2.5)
+* operator:
+    * eq (equals)
+    * gt (greater than)
+    * gte (greater than or equal to)
+    * lt (less than)
+    * lte (less than or equal to)
+
+### Filtering the Data and Sorting
+```url
+GET http://localhost:8080/api/data?filters=[{"filterBy":"version","operator":"gte","filterValue":2.5}]&sortBy=version&sortOrder=asc
+```
+**Parameters**
+* filterBy
+* filterValue
+* operator
+
+**Parameter Value**
+* filterBy:
+    * name(string)
+    * language(string)
+    * id(string)
+    * version(double)
+    * bio(string)
+* filterBy:
+    * the value by which we want to filter (e.g., if we want to filter for the version greater than or equal to 2.5, filterValue=2.5)
+* operator:
+    * eq (equals)
+    * gt (greater than)
+    * gte (greater than or equal to)
+    * lt (less than)
+    * lte (less than or equal to)
+
+### Filtering the Data in a range and Sorting
+```url
+GET http://localhost:8080/api/data?filters=[{"filterBy":"version","operator":"gte","filterValue":2.5}, {"filterBy":"version","operator":"lte","filterValue":6.8}]&sortBy=version&sortOrder=asc
+```
+**Parameters**
+* filterBy
+* filterValue
+* operator
+
+**Parameter Value**
+* filterBy:
+    * name(string)
+    * language(string)
+    * id(string)
+    * version(double)
+    * bio(string)
+* filterBy:
+    * the value by which we want to filter (e.g., if we want to filter for the version greater than or equal to 2.5, filterValue=2.5)
+* operator:
+    * eq (equals)
+    * gt (greater than)
+    * gte (greater than or equal to)
+    * lt (less than)
+    * lte (less than or equal to)
+
+
 ### Create Data
 ```url
 POST http://localhost:3000/api/data
